@@ -77,10 +77,10 @@ def getAPIId(apiIdMapping, namespace, service) {
 		error "No mapping document provided to lookup API Id!!"
 	}
 
-	if (apiIdMapping["${namespace}_${service}"]) {
-		return apiIdMapping["${namespace}_${service}"];
-	}else if (apiIdMapping["${namespace}_*"]) {
-		return apiIdMapping["${namespace}_*"];
+	if (apiIdMapping["${namespace}"] != null && apiIdMapping["${namespace}"]["${service}"] != null) {
+		return apiIdMapping["${namespace}"]["${service}"];
+	}else if (apiIdMapping["${namespace}"] != null  && apiIdMapping["${namespace}"]["*"] != null) {
+		return apiIdMapping["${namespace}"]["*"];
 	}else {
 		apiIdMapping["*"];
 	}   
